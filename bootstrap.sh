@@ -92,7 +92,7 @@ BACKUP_DIR="${script_dir}/backup"
 USER_HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
 
 install_brave(){
-# as non-root user
+  # as non-root user
   pushd .
   cd $(mktemp -d)
   git clone https://aur.archlinux.org/yay.git
@@ -104,11 +104,14 @@ install_brave(){
 
 install_arch() {
   msg "${RED}Installing${NOF} arch packages. tail -f ${LOGFILE_DIR} to see"
-  
-  # alacritty tmux
-  yes | pacman -Syu git vim ranger base-devel firefox xfce4-terminal volumeicon nitrogen thunar syncthing keepassxc
 
-# >> $LOGFILE_DIR 2>&1
+  # alacritty tmux
+  yes | pacman -Syu git vim python-pip ranger base-devel firefox xfce4-terminal volumeicon nitrogen thunar syncthing keepassxc blueman-manager bluez pulseaudio-bluetooth 
+  # >> $LOGFILE_DIR 2>&1
+
+  # enable bluetooth
+  systemctl enable bluetooth
+
 }
 
 fix_time() {
@@ -163,18 +166,18 @@ config_init() {
 #echo $script_dir
 
 config_files() {
-# $1 related to user home
-# $2 related to current directory
-config_init ".vim"                   "vim"
-config_init ".config/tmux"           "tmux"
-config_init ".config/i3"             "i3"
-config_init ".config/dunst"          "dunst"
-config_init ".config/i3status"       "i3status"
-config_init ".config/ranger"         "ranger"
-config_init ".config/rofi"           "rofi"
-config_init ".config/xfce4/terminal" "xfce4/terminal"
+  # $1 related to user home
+  # $2 related to current directory
+  config_init ".vim"                   "vim"
+  config_init ".config/tmux"           "tmux"
+  config_init ".config/i3"             "i3"
+  config_init ".config/dunst"          "dunst"
+  config_init ".config/i3status"       "i3status"
+  config_init ".config/ranger"         "ranger"
+  config_init ".config/rofi"           "rofi"
+  config_init ".config/xfce4/terminal" "xfce4/terminal"
 
-config_init ".gitconfig"             "gitconfig"
+  config_init ".gitconfig"             "gitconfig"
 }
 
 

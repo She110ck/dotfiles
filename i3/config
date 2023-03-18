@@ -82,7 +82,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id nitrogen --restore &
 exec --no-startup-id picom -b
 exec --no-startup-id volumeicon
-exec --no-startup-id syncthing &
+exec --no-startup-id syncthing --no-browser &
+exec --no-startup-id blueman-applet &
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -95,7 +96,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 bindsym F12 exec xfce4-terminal --drop-down
-
+bindsym $mod+f exec firefox
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -148,7 +149,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+# bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
