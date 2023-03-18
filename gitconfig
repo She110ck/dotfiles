@@ -1,0 +1,13 @@
+[user]
+  # email =
+  name = She110ck
+
+[mergetool "vimdiff"]
+  trustExitCode = true
+  #layout = "(LOCAL,BASE,REMOTE) / MERGED"
+  hideResolved = false
+  cmd = $merge_tool_path -f -d -c \"4wincmd w |  wincmd J\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" \"$MERGED\"
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+
