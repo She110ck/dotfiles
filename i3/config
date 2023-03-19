@@ -85,6 +85,8 @@ exec --no-startup-id volumeicon
 exec --no-startup-id syncthing --no-browser &
 exec --no-startup-id blueman-applet &
 exec --no-startup-id flameshot &
+exec_always --no-startup-id "setxkbmap -layout us,ru,az -variant ,, -option grp:win_space_toggle"
+
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -98,6 +100,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 bindsym F12 exec xfce4-terminal --drop-down
 bindsym $mod+f exec firefox
+
+# maybe I should set some toggle option
+bindsym $mark+parenright exec setxkbmap -layout us
+bindsym $mark+minus exec setxkbmap -layout az
+bindsym $mark+equal exec setxkbmap -layout ru
+#bindsym $mark+parenright exec "setxkbmap -layout us,ru,az -variant ,, -option grp:alt_shift_toggle"
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -161,7 +170,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -248,7 +257,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   status_command i3status
-    position top
+  position top
 
 ##START THEMING BAR
 #Theme name : ArcoLinux Var Ashes

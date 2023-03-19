@@ -17,6 +17,13 @@ Installing requires sudo privelege.
 
 ## Issues
 
+## Keyboard layout indicator
+The biggest issue that I had. This is the hell.  
+There's **NO WAY** to find out which keyboard layout is currently active. What the hell?  
+
+There is only one tool- `gxkb` which is defines active keyboard layout and shows on tray (still ne cli).  
+And guess what? Flags are missing. 
+
 ### Bluetooth
 I had a bluetooth issue when tired to connect my headphones.  
 Tried to install pipewire, didn't work.  

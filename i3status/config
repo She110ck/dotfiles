@@ -62,3 +62,7 @@ disk "/" {
         format = "%avail"
 }
 
+#command key {
+
+#}
+
