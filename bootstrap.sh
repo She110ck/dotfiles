@@ -9,17 +9,25 @@ usage() {
   cat <<EOF >&2 
 Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] [-f] -p param_value arg1 [arg2...]
 
-Set up my cli workspace.
+Set up my dotfiles.
 
 Available options:
 
+-a, --arch      Install arch required packages (requires root)
+-c, --config    Link config files 
+-t, --time      Sync hardware/software clock
+-b, --brave     Install brave (run only as non-root)
 -h, --help      Print this help and exit
 -v, --verbose   Print script debug info
--f, --flag      Some flag description
--p, --param     Some param description
+
 EOF
 exit
 }
+
+
+# -f, --flag      Some flag description
+# -p, --param     Some param description
+
 
 cleanup() {
   trap - SIGINT SIGTERM ERR EXIT
@@ -67,6 +75,7 @@ parse_params() {
       -a | --arch) install_arch ;;
       -t | --time) fix_time ;;
       -c | --config) config_files ;;
+      -b | --brave)  install_brave ;;
       -?*) die "Unknown option: $1" ;;
       *) break ;;
     esac
@@ -107,7 +116,7 @@ install_arch() {
 
   # alacritty tmux
   yes | pacman -Syu git vim python-pip ranger base-devel firefox xfce4-terminal volumeicon \
-  nitrogen thunar syncthing keepassxc blueman-manager bluez pulseaudio-bluetooth tlp
+  nitrogen flameshot thunar syncthing keepassxc blueman-manager bluez pulseaudio-bluetooth tlp
   # >> $LOGFILE_DIR 2>&1
 
   # enable bluetooth
@@ -187,9 +196,16 @@ config_files() {
   config_init ".config/fish"           "fish"
   config_init ".gitconfig"             "gitconfig"
   config_init ".aliases"               "aliases"
+  config_init "Pictures/nitrogen"      "nitrogen"
 
   # install oh-my-zsh framework
-  git clone git@github.com:ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+  if [ ! -d $USER_HOME/.oh-my-zsh ] ; 
+    then
+    git clone git@github.com:ohmyzsh/ohmyzsh.git $USER_HOME/.oh-my-zsh
+  fi
+
+  # init nitrogen wallpaper
+  nitrogen --set-zoom-fill --save "$USER_HOME/Pictures/nitrogen/wall.jpg"
 }
 
 

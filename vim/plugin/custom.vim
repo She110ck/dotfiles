@@ -40,8 +40,8 @@ set cursorline
 hi clear CursorLine
 hi CursorLine gui=underline cterm=underline
 
-" au InsertEnter * set cul
-" au InsertLeave * set nocul
+au InsertEnter * set nocul
+au InsertLeave * set cul
 
 
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor

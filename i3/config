@@ -84,6 +84,7 @@ exec --no-startup-id picom -b
 exec --no-startup-id volumeicon
 exec --no-startup-id syncthing --no-browser &
 exec --no-startup-id blueman-applet &
+exec --no-startup-id flameshot &
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

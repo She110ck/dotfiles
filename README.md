@@ -2,6 +2,10 @@
 My dotfiles with init script.  
 
 ## Installation
+**Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!  
+
+### Using Git and the bootstrap script
+
 Repo contains submodules for `zsh`. If you need them, clone with  `--recursive-submodules` flag.  
 ```bash
 git clone --recurse-submodules -j8 git@github.com:She110ck/dotfiles.git
