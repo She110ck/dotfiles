@@ -1,6 +1,15 @@
 # Introduction
 My dotfiles with init script.  
 
+## Installation
+Repo contains submodules for `zsh`. If you need them, clone with  `--recursive-submodules` flag.  
+```bash
+git clone --recurse-submodules -j8 git@github.com:She110ck/dotfiles.git
+
+```
+Depend on the goal, you need to run `bootstrap.sh` file with different flags.  
+Installing requires sudo privelege. 
+
 
 ## Issues
 
@@ -14,7 +23,9 @@ with [this gist](https://gist.github.com/hxss/a3eadb0cc52e58ce7743dff71b92b297).
 
 ### Markdown view
 Grip can real-time render markdown file. Recommend to use in pair with `venv`.  
-`pip install grip`
+```
+pip install grip
+```
 
 
 ## TODO:

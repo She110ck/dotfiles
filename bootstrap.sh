@@ -106,11 +106,17 @@ install_arch() {
   msg "${RED}Installing${NOF} arch packages. tail -f ${LOGFILE_DIR} to see"
 
   # alacritty tmux
-  yes | pacman -Syu git vim python-pip ranger base-devel firefox xfce4-terminal volumeicon nitrogen thunar syncthing keepassxc blueman-manager bluez pulseaudio-bluetooth 
+  yes | pacman -Syu git vim python-pip ranger base-devel firefox xfce4-terminal volumeicon \
+  nitrogen thunar syncthing keepassxc blueman-manager bluez pulseaudio-bluetooth tlp
   # >> $LOGFILE_DIR 2>&1
 
   # enable bluetooth
   systemctl enable bluetooth
+  systemctl enable tlp
+  systemctl mask systemd-rfkill.service
+  systemctl mask systemd-rfkill.socket
+  
+  # didn't find out working or not, but thinkfan requires some configuration.
 
 }
 
@@ -176,16 +182,20 @@ config_files() {
   config_init ".config/ranger"         "ranger"
   config_init ".config/rofi"           "rofi"
   config_init ".config/xfce4/terminal" "xfce4/terminal"
-
+  config_init ".zshrc"                 "zshrc"
+  config_init ".config/zsh"            "zsh"
+  config_init ".config/fish"           "fish"
   config_init ".gitconfig"             "gitconfig"
+  config_init ".aliases"               "aliases"
+
+  # install oh-my-zsh framework
+  git clone git@github.com:ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 }
-
-
 
 
 parse_params "$@"
 
 msg "${RED}Read parameters:${NOF}"
-msg "- flag: ${flag}"
-msg "- param: ${param}"
-msg "- arguments: ${args[*]-}"
+#msg "- flag: ${flag}"
+#msg "- param: ${param}"
+#msg "- arguments: ${args[*]-}"
