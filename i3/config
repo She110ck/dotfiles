@@ -85,7 +85,6 @@ exec --no-startup-id volumeicon
 exec --no-startup-id syncthing --no-browser &
 exec --no-startup-id blueman-applet &
 exec --no-startup-id flameshot &
-exec_always --no-startup-id "setxkbmap -layout us,ru,az -variant ,, -option grp:win_space_toggle"
 
 
 # Use pactl to adjust volume in PulseAudio.
@@ -100,12 +99,14 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 bindsym F12 exec xfce4-terminal --drop-down
 bindsym $mod+f exec firefox
+bindsym shift+Print exec peek
 
 # maybe I should set some toggle option
 bindsym $mark+parenright exec setxkbmap -layout us
 bindsym $mark+minus exec setxkbmap -layout az
 bindsym $mark+equal exec setxkbmap -layout ru
 #bindsym $mark+parenright exec "setxkbmap -layout us,ru,az -variant ,, -option grp:alt_shift_toggle"
+#exec_always --no-startup-id "setxkbmap -layout us,ru,az -variant ,, -option grp:win_space_toggle"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -167,7 +168,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle [tiling] border pixel 2; [floating] border pixel 4
 
 # change focus between tiling / floating windows
 # bindsym $mod+space focus mode_toggle

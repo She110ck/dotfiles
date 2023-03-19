@@ -14,6 +14,12 @@ git clone --recurse-submodules -j8 git@github.com:She110ck/dotfiles.git
 Depend on the goal, you need to run `bootstrap.sh` file with different flags.  
 Installing requires sudo privelege. 
 
+### Browsers
+Usually I prefer install browser extensions manually. This is brief list what I usually have:
+* News Feed Eradicator - powerful tool makes me stop wasting time
+* uBlock - no comment
+* SponsorBlock for Youtube - allows pass video integrated promotions. Powerful tool to avoid your distraction.
+* Pomodoro - usually I forgetting use it, but I have.
 
 ## Issues
 

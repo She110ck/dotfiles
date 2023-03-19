@@ -115,8 +115,8 @@ install_arch() {
   msg "${RED}Installing${NOF} arch packages. tail -f ${LOGFILE_DIR} to see"
 
   # alacritty tmux
-  yes | pacman -Syu git vim python-pip ranger base-devel firefox xfce4-terminal volumeicon \
-  nitrogen flameshot thunar syncthing keepassxc blueman-manager bluez pulseaudio-bluetooth tlp
+  yes | pacman -Syu git vim python-pip ranger base-devel firefox chromium xfce4-terminal volumeicon \
+  nitrogen flameshot peek viewnior thunar syncthing keepassxc blueman-manager bluez pulseaudio-bluetooth tlp
   # >> $LOGFILE_DIR 2>&1
 
   # enable bluetooth
