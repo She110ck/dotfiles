@@ -55,8 +55,9 @@ I prefer to see how much jobs on background. So I customized promt a bit on `.zs
 [x] xautolock
 [x] i3lock
 [x] i3 exit tray
+[ ] nested backup dir issue
 [ ] polybar
-[ ] mpd
+[x] mpd
 [ ] mosh
 
 ## FAQ

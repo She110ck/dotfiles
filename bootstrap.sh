@@ -97,7 +97,6 @@ setup_colors
 # script logic here
 
 LOGFILE_DIR=/var/log/bootstrap.log
-BACKUP_DIR="${script_dir}/backup"
 USER_HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
 
 
@@ -143,6 +142,8 @@ config_init() {
   LNK="${USER_HOME}/$1"
   TRGT="${script_dir}/$2"
   DATE_NOW=$(date +'%Y%m%d-%H%M%S')
+  BACKUP_DIR="${script_dir}/backup"
+
 
   [[ -z "$1" ]] && die "Missing required first  parameter"
   [[ -z "$2" ]] && die "Missing required second parameter"
@@ -200,6 +201,8 @@ config_files() {
   config_init ".config/fish"           "fish"
   config_init ".gitconfig"             "gitconfig"
   config_init ".aliases"               "aliases"
+  config_init ".config/mpd"            "mpd"
+  config_init ".config/ncmpcpp"        "ncmpcpp"
   config_init "Pictures/nitrogen"      "nitrogen"
 
   # install oh-my-zsh framework
