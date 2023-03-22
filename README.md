@@ -43,12 +43,21 @@ Grip can real-time render markdown file. Recommend to use in pair with `venv`.
 ```
 pip install grip
 ```
+### Theme customizing
+I prefer to see how much jobs on background. So I customized promt a bit on `.zshrc`.
 
 
 ## TODO:
-* i3lock
-* i3 exit tray
- 
+[x] screenshot
+[x] photo/video viewer
+[x] bluetooth 
+[x] automount (lxsession)
+[x] xautolock
+[x] i3lock
+[x] i3 exit tray
+[ ] polybar
+[ ] mpd
+[ ] mosh
 
 ## FAQ
 * Why `vim` configs provided as a folder instead of `.vimrc`?  

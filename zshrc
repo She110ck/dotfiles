@@ -77,10 +77,13 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Want to be aware about background tasks(half-life style). 
+# Replace big dot with %j if you want to see count of jobs.
+export PROMPT="%{${turquoise}%(1j.● .)${reset_color}%}$PROMPT"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+setopt globdots
+
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -96,6 +99,9 @@ export ARCHFLAGS="-arch x86_64"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+
+export MPD_HOST=$HOME/.config/mpd/socket
+
 
 if [ -f ~/.aliases ]; then
     source ~/.aliases

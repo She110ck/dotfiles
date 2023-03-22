@@ -35,11 +35,13 @@ battery all {
         format = "%status %percentage %remaining"
         format_down = "No battery"
         status_chr = "⚡CHR"
-        status_bat = "  BAT"
+        status_bat = "  BAT"
         status_unk = "? UNK"
         status_full = "☻ FULL"
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
+        integer_battery_capacity = true
+        last_full_capacity = true
 }
 
 tztime local {
@@ -52,8 +54,8 @@ cpu_temperature 0 {
 }   
 
 volume master {
-        format = "♪: %volume"
-        format_muted = "♪: muted (%volume)"
+        format = " : %volume"
+        format_muted = " : muted (%volume)"
         device = "default"
         mixer = "Master"
         mixer_idx = 0

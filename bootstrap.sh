@@ -6,7 +6,7 @@ trap cleanup SIGINT SIGTERM ERR EXIT
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 usage() {
-  cat <<EOF >&2 
+  cat <<EOF >&2
 Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] [-f] -p param_value arg1 [arg2...]
 
 Set up my dotfiles.
@@ -14,7 +14,7 @@ Set up my dotfiles.
 Available options:
 
 -a, --arch      Install arch required packages (requires root)
--c, --config    Link config files 
+-c, --config    Link config files
 -t, --time      Sync hardware/software clock
 -b, --brave     Install brave (run only as non-root)
 -h, --help      Print this help and exit
@@ -100,6 +100,7 @@ LOGFILE_DIR=/var/log/bootstrap.log
 BACKUP_DIR="${script_dir}/backup"
 USER_HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
 
+
 install_brave(){
   # as non-root user
   pushd .
@@ -110,21 +111,23 @@ install_brave(){
   popd
 
 }
-
+# install vscodium via yay
+# maybe xidlehook over xautolock
 install_arch() {
   msg "${RED}Installing${NOF} arch packages. tail -f ${LOGFILE_DIR} to see"
 
   # alacritty tmux
   yes | pacman -Syu git vim python-pip ranger base-devel firefox chromium xfce4-terminal volumeicon \
-  nitrogen flameshot peek viewnior thunar syncthing keepassxc blueman-manager bluez pulseaudio-bluetooth tlp
-  # >> $LOGFILE_DIR 2>&1
+    nitrogen flameshot peek viewnior mpd ncmpcpp thunar syncthing keepassxc \
+     blueman-manager bluez pulseaudio-bluetooth tlp xss-lock lxsession xautolock
+      # >> $LOGFILE_DIR 2>&1
 
   # enable bluetooth
   systemctl enable bluetooth
   systemctl enable tlp
   systemctl mask systemd-rfkill.service
   systemctl mask systemd-rfkill.socket
-  
+
   # didn't find out working or not, but thinkfan requires some configuration.
 
 }
@@ -137,8 +140,8 @@ config_init() {
   # get 2 argument: destination and dotfile location
   # $1 e.g. .vim
   # $2 e.g.  vim
-  LNK="${USER_HOME}/$1" 
-  TRGT="${script_dir}/$2" 
+  LNK="${USER_HOME}/$1"
+  TRGT="${script_dir}/$2"
   DATE_NOW=$(date +'%Y%m%d-%H%M%S')
 
   [[ -z "$1" ]] && die "Missing required first  parameter"
@@ -184,6 +187,7 @@ config_files() {
   # $1 related to user home
   # $2 related to current directory
   config_init ".vim"                   "vim"
+  config_init ".config/nano"           "nano"
   config_init ".config/tmux"           "tmux"
   config_init ".config/i3"             "i3"
   config_init ".config/dunst"          "dunst"
@@ -200,12 +204,15 @@ config_files() {
 
   # install oh-my-zsh framework
   if [ ! -d $USER_HOME/.oh-my-zsh ] ; 
-    then
+  then
     git clone git@github.com:ohmyzsh/ohmyzsh.git $USER_HOME/.oh-my-zsh
   fi
-
-  # init nitrogen wallpaper
-  nitrogen --set-zoom-fill --save "$USER_HOME/Pictures/nitrogen/wall.jpg"
+  if [ ! -f $USER_HOME/.config/nitrogen/bootstrap_init_flag ] ;
+  then
+    # init nitrogen wallpaper
+    nitrogen --set-zoom-fill --save "$USER_HOME/Pictures/nitrogen/wall.jpg"
+    touch $USER_HOME/.config/nitrogen/bootstrap_init_flag
+  fi
 }
 
 
