@@ -110,7 +110,8 @@ install_brave(){
   popd
 
 }
-# install vscodium via yay
+# install vscodium via yay 
+# install touchegg, touche via yay for touchpad gesture
 # maybe xidlehook over xautolock
 install_arch() {
   msg "${RED}Installing${NOF} arch packages. tail -f ${LOGFILE_DIR} to see"
@@ -126,7 +127,9 @@ install_arch() {
   systemctl enable tlp
   systemctl mask systemd-rfkill.service
   systemctl mask systemd-rfkill.socket
-
+  
+  # systemctl enable touchegg
+  # also copy modprobe.d/ to /etc/modprobe.d/
   # didn't find out working or not, but thinkfan requires some configuration.
 
 }
@@ -188,6 +191,9 @@ config_files() {
   # $1 related to user home
   # $2 related to current directory
   config_init ".vim"                   "vim"
+  config_init ".zshrc"                 "zshrc"
+  config_init ".gitconfig"             "gitconfig"
+  config_init ".aliases"               "aliases"
   config_init ".config/nano"           "nano"
   config_init ".config/tmux"           "tmux"
   config_init ".config/i3"             "i3"
@@ -196,13 +202,11 @@ config_files() {
   config_init ".config/ranger"         "ranger"
   config_init ".config/rofi"           "rofi"
   config_init ".config/xfce4/terminal" "xfce4/terminal"
-  config_init ".zshrc"                 "zshrc"
   config_init ".config/zsh"            "zsh"
   config_init ".config/fish"           "fish"
-  config_init ".gitconfig"             "gitconfig"
-  config_init ".aliases"               "aliases"
   config_init ".config/mpd"            "mpd"
   config_init ".config/ncmpcpp"        "ncmpcpp"
+  config_init ".config/picom"          "picom"
   config_init "Pictures/nitrogen"      "nitrogen"
 
   # install oh-my-zsh framework
