@@ -1,0 +1,10 @@
+[Unit]
+Description=Fix for AER's excessive logging for Intel Wireless (Realtek Wireless RTL8822CE)
+After=systemd-modules-load.service
+[Service]
+Type=oneshot
+# Change your device and vendor (or bus/slot/function accordingly)
+ExecStart=/usr/bin/setpci -v -d 10ec:c822 CAP_EXP+0x8.w=0x201e
+RemainAfterExit=yes
+[Install]
+WantedBy=network.target

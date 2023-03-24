@@ -111,8 +111,18 @@ install_brave(){
 
 }
 # install vscodium via yay 
+# install thinkfan via yay
 # install touchegg, touche via yay for touchpad gesture
 # maybe xidlehook over xautolock
+
+# disable dmesg logs:
+# rtw_8822ce 0000:05:00.0: PCIe Bus Error: severity=Corrected, type=Physical Layer, (Receiver ID)
+# copy .service to /etc/systemd/system/ and execute:
+# systemctl daemon-reload
+# systemctl enable fix_intel_realtek_wifi_log_sh-t.service
+# systemctl start fix_intel_realtek_wifi_log_sh-t.service
+# https://gist.github.com/Brainiarc7/3179144393747f35e5155fdbfd675554
+
 install_arch() {
   msg "${RED}Installing${NOF} arch packages. tail -f ${LOGFILE_DIR} to see"
 
@@ -129,8 +139,12 @@ install_arch() {
   systemctl mask systemd-rfkill.socket
   
   # systemctl enable touchegg
-  # also copy modprobe.d/ to /etc/modprobe.d/
-  # didn't find out working or not, but thinkfan requires some configuration.
+  # copy modprobe.d/ to /etc/modprobe.d/ to prevent PCI errors
+  # fan control
+  # 
+  # comment  /usr/lib/modprobe.d/thinkpad_acpi.conf to install thinkfan
+  # cp thinkfan.conf to /etc/thinkfan.conf (can require define hwmon[0-9] number)
+  # systemctl enable thinkfan.conf
 
 }
 
