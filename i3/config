@@ -118,7 +118,7 @@ for_window [class="Alacritty|Thunar|Viewnior|Brave|firefox|Emacs"] focus
 # Assign Applications to specific workspace
 # get class with xprop
 assign [class="Brave|Keepassxc"]              → $ws1
-assign [class="^xfce4-terminal|Alacritty"]    → $ws2
+#assign [class="^xfce4-terminal|Alacritty"]    → $ws2
 assign [class="Chromium"]                     → $ws3
 assign [class="^firefox|^discord"]            → $ws4
 assign [class="Thunar|Viewnior"]              → $ws5
@@ -150,6 +150,7 @@ exec --no-startup-id syncthing --no-browser
 exec --no-startup-id blueman-applet 
 exec --no-startup-id flameshot
 exec --no-startup-id mpd
+exec --no-startup-id redshift -l 40.40:49.95
 # Caps Lock as Ctrl
 exec --no-startup-id setxkbmap -option ctrl:nocaps
 

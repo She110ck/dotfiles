@@ -80,6 +80,9 @@ source $ZSH/oh-my-zsh.sh
 # autocompletes dot files too
 setopt globdots
 
+# Preventing commands with a leading space from being included
+setopt HIST_IGNORE_SPACE 
+
 # Want to be aware about background tasks(half-life style). 
 # Replace big dot with %j if you want to see count of jobs.
 export PROMPT="%{${turquoise}%(1j.● .)${reset_color}%}$PROMPT"

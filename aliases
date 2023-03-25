@@ -1,4 +1,8 @@
 alias gs="git status"
 alias gc="git commit"
 alias v="vim"
+alias n="ncmpcpp"
 alias rm="rm -i"
+alias sudoedit='doas rnano'
+alias e="exa -l -h"
+alias cat="bat"

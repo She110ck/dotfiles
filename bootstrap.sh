@@ -128,8 +128,12 @@ install_arch() {
 
   # alacritty tmux
   yes | pacman -Syu git vim python-pip ranger base-devel firefox chromium xfce4-terminal volumeicon \
-    nitrogen flameshot peek viewnior mpd ncmpcpp thunar syncthing keepassxc \
-     blueman-manager bluez pulseaudio-bluetooth tlp xss-lock lxsession xautolock
+    nitrogen flameshot peek viewnior mpd ncmpcpp thunar \
+    syncthing keepassxc \
+    blueman-manager bluez pulseaudio-bluetooth \
+    tlp xss-lock lxsession xautolock \
+    mosh ttf-anonymous-pro ttf-hack \
+    iotop telnet iftop bat exa
       # >> $LOGFILE_DIR 2>&1
 
   # enable bluetooth
@@ -218,6 +222,7 @@ config_files() {
   config_init ".config/xfce4/terminal" "xfce4/terminal"
   config_init ".config/zsh"            "zsh"
   config_init ".config/fish"           "fish"
+  config_init ".config/alacritty"      "alacritty"
   config_init ".config/mpd"            "mpd"
   config_init ".config/ncmpcpp"        "ncmpcpp"
   config_init ".config/picom"          "picom"
