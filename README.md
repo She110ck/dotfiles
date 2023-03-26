@@ -4,6 +4,11 @@ My dotfiles with init script.
 ## Installation
 **Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!  
 
+## Good to know
+I disabled keyboard cycling. Right now experimenting with layout per binding. `us` layout is `Ctrl+)`.  
+`dotfiles` will have `backup` directory in case if you already have some configs for things below. Just will move with timestap, don't worry. 
+
+
 ### Using Git and the bootstrap script
 
 Repo contains submodules for `zsh`. If you need them, clone with  `--recursive-submodules` flag.  
@@ -110,10 +115,10 @@ I prefer to see ~~how much~~ jobs on background. So I customized promt a bit on 
 [x] i3 exit tray  
 [ ] polybar  
 [x] mpd  
-[x] mosh
-[x] sysstat
-[x] power saving
-[x] laptop fan
+[x] mosh  
+[x] sysstat  
+[x] power saving  
+[x] laptop fan  
 
 
 ## FAQ
