@@ -10,6 +10,8 @@ Repo contains submodules for `zsh`. If you need them, clone with  `--recursive-s
 ``` bash
 git clone --recurse-submodules -j8 git@github.com:She110ck/dotfiles.git
 
+# if you want to configure your server, no need for zsh modules.
+git clone git@github.com:She110ck/dotfiles.git
 ```
 Depend on the goal, you need to run `bootstrap.sh` file with different flags.  
 Some commands requires sudo privelege. 
@@ -108,7 +110,11 @@ I prefer to see ~~how much~~ jobs on background. So I customized promt a bit on 
 [x] i3 exit tray  
 [ ] polybar  
 [x] mpd  
-[x] mosh  
+[x] mosh
+[x] sysstat
+[x] power saving
+[x] laptop fan
+
 
 ## FAQ
 **Q: Why `vim` configs provided as a folder instead of `.vimrc`?**  

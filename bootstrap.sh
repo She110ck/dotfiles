@@ -9,24 +9,25 @@ usage() {
   cat <<EOF >&2
 Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] [-f] -p param_value arg1 [arg2...]
 
-Set up my dotfiles.
+Set up my workspace and dotfiles.
+Tuned especially for thinkpad e15 with arch.
 
 Available options:
 
--a, --arch      Install arch required packages (requires root)
--c, --config    Link config files
--t, --time      Sync hardware/software clock
--b, --brave     Install brave (run only as non-root)
--h, --help      Print this help and exit
--v, --verbose   Print script debug info
+-a,  --arch           Install arch required packages (requires root)
+-c,  --config         Link config files (prefer run as non-root)
+-m,  --minimal        Link config mimal files for server (prefer run as non-root)
+-uc, --ubuntu-cli     Minimal set of tools for ubuntu servers (requires root)
+-s,  --services       Enable/configure services.To best run after installing yay packages (requires root)
+-y,  --yay            Install yay (run only as non-root)
+-yp, --yay-pkg        Install yay packages (run only as non-root)
+-h,  --help           Print this help and exit
+-v,  --verbose        Print script debug info
 
 EOF
 exit
 }
 
-
-# -f, --flag      Some flag description
-# -p, --param     Some param description
 
 
 cleanup() {
@@ -64,18 +65,20 @@ parse_params() {
 
   while :; do
     case "${1-}" in
-      -h | --help) usage ;;
-      -v | --verbose) set -x ;;
+      -h  | --help) usage ;;
+      -v  | --verbose) set -x ;;
       --no-color) NO_COLOR=1 ;;
-      -f | --flag) flag=1 ;; # example flag
-      -p | --param) # example named parameter
-        param="${2-}"
+      --os ) # example named parameter
+        OS="${2-}"
         shift
         ;;
-      -a | --arch) install_arch ;;
-      -t | --time) fix_time ;;
-      -c | --config) config_files ;;
-      -b | --brave)  install_brave ;;
+      -a  | --arch)       install_arch ;;
+      -c  | --config)     config_files ;;
+      -m  | --minimal)    config_minimal ;;
+      -uc | --ubuntu-cli) install_ubuntu_cli;;
+      -s  | --services)   init_services ;;
+      -y  | --yay)        install_yay ;;
+      -yp | --yay-pkg)    install_yay_pkgs ;;
       -?*) die "Unknown option: $1" ;;
       *) break ;;
     esac
@@ -85,8 +88,9 @@ parse_params() {
   args=("$@")
 
   # check required params and arguments
-  #[[ -z "${param-}" ]] && die "Missing required parameter: param"
+  #[[ -z "${OS-}" ]] && die "Missing required parameter: param"
   #[[ ${#args[@]} -eq 0 ]] && die "Missing script arguments"
+  [[ ${#args[@]} -eq 0 ]] && msg "Bad usage.\nTry with '--help' for more information."
 
   return 0
 }
@@ -100,20 +104,26 @@ LOGFILE_DIR=/var/log/bootstrap.log
 USER_HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
 
 
-install_brave(){
+install_yay(){
   # as non-root user
-  pushd .
-  cd $(mktemp -d)
-  git clone https://aur.archlinux.org/yay.git
-  cd yay
-  makepkg -si
-  popd
-
+  if ! type "yay" > /dev/null; 
+  then
+    pushd .
+    cd $(mktemp -d)
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    popd
+    # permanent answer to yay questions
+    yay --save --answerdiff None --answerclean None --removemake
+  else
+  msg "Yay is ${GREEN}already installed${NOF}!"
+  fi
 }
 
-yay_install() {
+install_yay_pkgs() {
   msg "${RED}Installing${NOF} arch packages from AUR. tail -f ${LOGFILE_DIR} to see"
-  yay -Syu vscodium thinkfan touchegg touche
+  yes | yay -Syu --need --noconfirm brave-bin vscodium thinkfan touchegg touche >> LOGFILE_DIR 2>&1
 }
 # maybe xidlehook over xautolock
 
@@ -122,15 +132,15 @@ install_arch() {
   msg "${RED}Installing${NOF} arch packages. tail -f ${LOGFILE_DIR} to see"
 
   # alacritty tmux
-  yes | pacman -Syu git vim python-pip ranger base-devel \
+  yes | pacman -Syu --need --noconfirm git vim python-pip ranger base-devel \
     firefox chromium xfce4-terminal volumeicon \
     nitrogen flameshot peek viewnior mpd ncmpcpp mpv thunar \
-    syncthing keepassxc alacritty noto-fonts-emoji \
+    syncthing keepassxc alacritty \
     blueman-manager bluez pulseaudio-bluetooth \
-    tlp xss-lock lxsession xautolock \
-    mosh ttf-anonymous-pro ttf-hack \
+    tlp xss-lock lxsession xautolock sysstat \
+    mosh ttf-anonymous-pro ttf-hack noto-fonts-emoji \
     iotop telnet iftop bat exa
-      # >> $LOGFILE_DIR 2>&1
+       >> $LOGFILE_DIR 2>&1
 }
 
 init_services(){
@@ -140,14 +150,20 @@ init_services(){
   systemctl mask systemd-rfkill.service
   systemctl mask systemd-rfkill.socket
 
-  # yay installs
-  # systemctl enable touchegg | true
-  # systemctl enable thinkfan.conf | true
+  # collects system stats
+  systemctl enable sysstat
 
-}
-
-fix_time() {
+  # sync hardware/software clock
   timedatectl set-local-rtc 1
+  
+  # yay installed daemons
+  if type "yay" > /dev/null; 
+  then
+    systemctl enable touchegg 
+    systemctl enable thinkfan.conf
+  else
+    msg "${YELLOW}Yay not found.${NOF} Skipping yay daemons."
+  fi
 }
 
 config_init() {
@@ -203,7 +219,23 @@ config_init() {
   fi
 }
 
-#echo $script_dir
+# only for servers
+config_minimal() {
+
+  config_init ".vim"                   "vim"
+  config_init ".gitconfig"             "gitconfig"
+  config_init ".config/nano"           "nano"
+  config_init ".config/tmux"           "tmux"
+  config_init ".config/ranger"         "ranger"
+
+}
+
+# usually I have only ubuntu servers
+install_ubuntu_cli() {
+  msg "${RED}Installing${NOF} ubuntu server packages. tail -f ${LOGFILE_DIR} to see"
+  apt update >> /dev/null 2>&1
+  apt install -y vim git ranger tmux htop telnet mosh >> $LOGFILE_DIR 2>&1
+}
 
 config_files() {
   # $1 related to user home
@@ -243,10 +275,5 @@ config_files() {
   fi
 }
 
-
 parse_params "$@"
 
-#msg "${RED}Read parameters:${NOF}"
-#msg "- flag: ${flag}"
-#msg "- param: ${param}"
-#msg "- arguments: ${args[*]-}"
