@@ -62,7 +62,8 @@ Some issues hardware spesific, which means you need to handle manually.
 
 ## Keyboard layout indicator
 The biggest issue that I had. This is the hell.  
-There's **NO WAY** to find out which keyboard layout is currently active. What the hell?  
+
+`setxkbmap -query | grep layout | colrm 1 12`
 
 There is only one tool- `gxkb` which is defines active keyboard layout and shows on tray (still ne cli).  
 And guess what? Flags are missing. 

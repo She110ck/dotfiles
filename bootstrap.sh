@@ -125,7 +125,7 @@ install_arch() {
   yes | pacman -Syu git vim python-pip ranger base-devel \
     firefox chromium xfce4-terminal volumeicon \
     nitrogen flameshot peek viewnior mpd ncmpcpp mpv thunar \
-    syncthing keepassxc alacritty \
+    syncthing keepassxc alacritty noto-fonts-emoji \
     blueman-manager bluez pulseaudio-bluetooth \
     tlp xss-lock lxsession xautolock \
     mosh ttf-anonymous-pro ttf-hack \
@@ -218,6 +218,7 @@ config_files() {
   config_init ".config/i3"             "i3"
   config_init ".config/dunst"          "dunst"
   config_init ".config/i3status"       "i3status"
+  config_init ".config/i3blocks"       "i3blocks"
   config_init ".config/ranger"         "ranger"
   config_init ".config/rofi"           "rofi"
   config_init ".config/xfce4/terminal" "xfce4/terminal"
