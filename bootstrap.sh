@@ -110,45 +110,39 @@ install_brave(){
   popd
 
 }
-# install vscodium via yay 
-# install thinkfan via yay
-# install touchegg, touche via yay for touchpad gesture
+
+yay_install() {
+  msg "${RED}Installing${NOF} arch packages from AUR. tail -f ${LOGFILE_DIR} to see"
+  yay -Syu vscodium thinkfan touchegg touche
+}
 # maybe xidlehook over xautolock
 
-# disable dmesg logs:
-# rtw_8822ce 0000:05:00.0: PCIe Bus Error: severity=Corrected, type=Physical Layer, (Receiver ID)
-# copy .service to /etc/systemd/system/ and execute:
-# systemctl daemon-reload
-# systemctl enable fix_intel_realtek_wifi_log_sh-t.service
-# systemctl start fix_intel_realtek_wifi_log_sh-t.service
-# https://gist.github.com/Brainiarc7/3179144393747f35e5155fdbfd675554
 
 install_arch() {
   msg "${RED}Installing${NOF} arch packages. tail -f ${LOGFILE_DIR} to see"
 
   # alacritty tmux
-  yes | pacman -Syu git vim python-pip ranger base-devel firefox chromium xfce4-terminal volumeicon \
-    nitrogen flameshot peek viewnior mpd ncmpcpp thunar \
-    syncthing keepassxc \
+  yes | pacman -Syu git vim python-pip ranger base-devel \
+    firefox chromium xfce4-terminal volumeicon \
+    nitrogen flameshot peek viewnior mpd ncmpcpp mpv thunar \
+    syncthing keepassxc alacritty \
     blueman-manager bluez pulseaudio-bluetooth \
     tlp xss-lock lxsession xautolock \
     mosh ttf-anonymous-pro ttf-hack \
     iotop telnet iftop bat exa
       # >> $LOGFILE_DIR 2>&1
+}
 
+init_services(){
   # enable bluetooth
   systemctl enable bluetooth
   systemctl enable tlp
   systemctl mask systemd-rfkill.service
   systemctl mask systemd-rfkill.socket
-  
-  # systemctl enable touchegg
-  # copy modprobe.d/ to /etc/modprobe.d/ to prevent PCI errors
-  # fan control
-  # 
-  # comment  /usr/lib/modprobe.d/thinkpad_acpi.conf to install thinkfan
-  # cp thinkfan.conf to /etc/thinkfan.conf (can require define hwmon[0-9] number)
-  # systemctl enable thinkfan.conf
+
+  # yay installs
+  # systemctl enable touchegg | true
+  # systemctl enable thinkfan.conf | true
 
 }
 
@@ -179,13 +173,19 @@ config_init() {
   if [ ! -L "${LNK}" ] && [ -d "${LNK}" ]
   then
     msg "Found ${YELLOW}${LNK}${NOF}! Backup to ${BACKUP_DIR}..."
-    mv "${LNK}" "${BACKUP_DIR}/$1.${DATE_NOW}" 
+    mv "${LNK}" "${BACKUP_DIR}/${1#.config/}.${DATE_NOW}" 
   fi
   # file found
   if [ ! -L "${LNK}" ] && [ -f "${LNK}" ]
   then
     msg "Found ${YELLOW}${LNK}${NOF}! Backup to ${BACKUP_DIR} ..."
-    mv "${LNK}" "${BACKUP_DIR}/$1.${DATE_NOW}" 
+    mv "${LNK}" "${BACKUP_DIR}/${1#.config/}.${DATE_NOW}" 
+  fi
+  
+  # if link parent directory doesn't exists, create
+  if [ ! -d "$(dirname ${LNK})" ]
+  then
+    mkdir -p "$(dirname ${LNK})"
   fi
 
   # remove if another link
@@ -208,6 +208,7 @@ config_init() {
 config_files() {
   # $1 related to user home
   # $2 related to current directory
+
   config_init ".vim"                   "vim"
   config_init ".zshrc"                 "zshrc"
   config_init ".gitconfig"             "gitconfig"
@@ -237,14 +238,14 @@ config_files() {
   then
     # init nitrogen wallpaper
     nitrogen --set-zoom-fill --save "$USER_HOME/Pictures/nitrogen/wall.jpg"
-    touch $USER_HOME/.config/nitrogen/bootstrap_init_flag
+    TOUCH $USER_HOME/.config/nitrogen/bootstrap_init_flag
   fi
 }
 
 
 parse_params "$@"
 
-msg "${RED}Read parameters:${NOF}"
+#msg "${RED}Read parameters:${NOF}"
 #msg "- flag: ${flag}"
 #msg "- param: ${param}"
 #msg "- arguments: ${args[*]-}"

@@ -147,6 +147,7 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id picom -b
 exec --no-startup-id volumeicon
 exec --no-startup-id syncthing --no-browser 
+exec --no-startup-id touchegg --client
 exec --no-startup-id blueman-applet 
 exec --no-startup-id flameshot
 exec --no-startup-id mpd

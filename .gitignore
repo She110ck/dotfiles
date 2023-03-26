@@ -3,3 +3,4 @@ vim/.netrwhist
 mpd/playlists/*
 mpd/socket
 ncmpcpp/error.log
+tmux/*.log
