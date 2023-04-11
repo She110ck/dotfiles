@@ -69,11 +69,13 @@ Some issues hardware spesific, which means you need to handle manually.
 
 ## Keyboard layout indicator
 The biggest issue that I had. This is the hell.  
+There's **NO WAY** to find out which keyboard layout is currently active. What the hell?  
 
+Only this command **WHICH DOESN'T WORK IF YOU WANT TO CYCLE LAYOUTS** via win+space.  
 `setxkbmap -query | grep layout | colrm 1 12`
 
-There is only one tool- `gxkb` which is defines active keyboard layout and shows on tray (still ne cli).  
-And guess what? Flags are missing. 
+There is only one tool- `gxkb` which is defines active keyboard layout and shows on tray (still non cli option).  
+And guess what? Country flags are missing. 
 
 ### Bluetooth
 I had a bluetooth issue when tired to connect my headphones.  

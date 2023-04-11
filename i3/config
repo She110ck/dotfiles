@@ -148,7 +148,7 @@ exec --no-startup-id picom -b
 exec --no-startup-id volumeicon
 exec --no-startup-id syncthing --no-browser 
 exec --no-startup-id touchegg --client
-exec --no-startup-id blueman-applet 
+exec --no-startup-id "sh -c 'sleep 10; exec blueman-tray'"
 exec --no-startup-id flameshot
 exec --no-startup-id mpd
 exec --no-startup-id redshift -l 40.40:49.95
@@ -172,6 +172,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym F12 exec xfce4-terminal --drop-down
 bindsym $mod+f exec firefox
 bindsym shift+Print exec peek
+bindsym Print exec flameshot gui
 
 # maybe I should set some toggle option
 bindsym $mark+parenright exec setxkbmap -layout us
