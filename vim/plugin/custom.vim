@@ -43,13 +43,20 @@ hi CursorLine gui=underline cterm=underline
 au InsertEnter * set nocul
 au InsertLeave * set cul
 
-
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+
+let g:colors_name = ''
+let g:colors = getcompletion('', 'color')
+func! NextColors()
+    let idx = index(g:colors, g:colors_name)
+    return (idx + 1 >= len(g:colors) ? g:colors[0] : g:colors[idx + 1])
+endfunc
 
 let mapleader=','
 let g:mapleader=','
 nnoremap <F3> :noh <CR>
 nnoremap <F4> :set invnumber <CR>
+nnoremap <F5> :execute "colo " .. NextColors()<CR>
 
 if &diff
     map <leader>1 :diffget LOCAL<CR>
