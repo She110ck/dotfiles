@@ -6,7 +6,7 @@ alias rm="rm -i"
 alias sudoedit='doas rnano'
 alias e="exa -l -h"
 alias cat="bat"
-alias msh="mosh remote -- tmux new -A -s layers -n layers"
+alias msh="mosh remote -- bash -c 'TERM=tmux-256color tmux new -A -s layers -n layers'"
 
 alias gg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
 

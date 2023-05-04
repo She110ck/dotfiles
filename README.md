@@ -21,6 +21,17 @@ git clone git@github.com:She110ck/dotfiles.git
 Depend on the goal, you need to run `bootstrap.sh` file with different flags.  
 Some commands requires sudo privelege. 
 
+
+
+I also have server related second configuration.
+
+```
+# server configuration
+bash -c "$(curl -fsSL https://t.ly/Sxdf)"
+
+```
+
+
 ## Manual config
 Not everything configured automatically because of security concerns.
 
