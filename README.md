@@ -34,6 +34,10 @@ Usually I prefer install browser extensions manually. This is brief list what I 
 
 ### DOAS - sudo alternative
 Just use arch wiki. Easy enough to configure in 5 minute
+### Tmux config
+
+Using as a prefix command `C-Space`.
+On first start use `C-Space I` to install plugins. Yes, capital I.
 
 ### SSH/MOSH
 Here is a small example snippet how it can be look like:
@@ -67,7 +71,7 @@ Also, comment line on `/usr/lib/modprobe.d/thinkpad_acpi.conf` to run thinkfan p
 ## Issues
 Some issues hardware spesific, which means you need to handle manually.
 
-## Keyboard layout indicator
+### Keyboard layout indicator
 The biggest issue that I had. This is the hell.  
 There's **NO WAY** to find out which keyboard layout is currently active. What the hell?  
 
@@ -76,6 +80,11 @@ Only this command **WHICH DOESN'T WORK IF YOU WANT TO CYCLE LAYOUTS** via win+sp
 
 There is only one tool- `gxkb` which is defines active keyboard layout and shows on tray (still non cli option).  
 And guess what? Country flags are missing. 
+
+### Ctrl+Shift+C issue
+You know that, you faced it. Chrome opens devtools when you trying to copy something. There's no native way to disable. Only via extension.
+I set up it to something without affect via `chrome://extensions/shortcuts`.
+Or you can use extension to "fix" it.
 
 ### Bluetooth
 I had a bluetooth issue when tired to connect my headphones.  
@@ -132,5 +141,10 @@ I prefer to see ~~how much~~ jobs on background. So I customized promt a bit on 
 **Q: What about tmux?**  
  
 **A:** Same thing with tmux.
+
+**Q: Where I can find Nerd Font icons?**
+
+**A:** Check this out: [https://www.nerdfonts.com/cheat-sheet](https://www.nerdfonts.com/cheat-sheet)
+
 
 

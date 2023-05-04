@@ -11,8 +11,19 @@ set incsearch
 set nu
 set paste
 set expandtab
-set mouse=
-set ttymouse=
+" mouse interaction handles differently
+if empty($TMUX)
+  set mouse=
+  set ttymouse=
+else
+  set mouse=a
+  set ttymouse=xterm2
+endif
+
+set wildmenu
+set wildmode=list:longest
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
 set showcmd
 set so=999
 
@@ -64,4 +75,20 @@ if &diff
     map <leader>3 :diffget REMOTE<CR>
 endif
 
+" visual difference between envs
+if hostname() =~ "dev"
+  colorscheme desert
+endif
+
+if hostname() =~ "test"
+  colorscheme pablo
+endif
+
+if hostname() =~ "stage"
+  colorscheme zellner
+endif
+
+if hostname() =~ "prod"
+  colorscheme murphy
+endif
 

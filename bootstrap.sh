@@ -106,7 +106,7 @@ USER_HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
 
 install_yay(){
   # as non-root user
-  if ! type "yay" > /dev/null; 
+  if ! type "yay" &>/dev/null;
   then
     pushd .
     cd $(mktemp -d)
@@ -138,7 +138,7 @@ install_arch() {
     syncthing keepassxc alacritty \
     blueman-manager bluez pulseaudio-bluetooth \
     tlp xss-lock lxsession xautolock sysstat \
-    mosh ttf-anonymous-pro ttf-hack noto-fonts-emoji \
+    mosh ttf-firacode-nerd ttf-sourcecodepro-nerd ttf-anonymouspro-nerd ttf-hack-nerd noto-fonts-emoji \
     iotop telnet iftop bat exa
        >> $LOGFILE_DIR 2>&1
 }
@@ -157,7 +157,7 @@ init_services(){
   timedatectl set-local-rtc 1
   
   # yay installed daemons
-  if type "yay" > /dev/null; 
+  if type "yay" &>/dev/null;
   then
     systemctl enable touchegg 
     systemctl enable thinkfan.conf
@@ -267,11 +267,20 @@ config_files() {
   then
     git clone git@github.com:ohmyzsh/ohmyzsh.git $USER_HOME/.oh-my-zsh
   fi
+
   if [ ! -f $USER_HOME/.config/nitrogen/bootstrap_init_flag ] ;
   then
     # init nitrogen wallpaper
     nitrogen --set-zoom-fill --save "$USER_HOME/Pictures/nitrogen/wall.jpg"
     TOUCH $USER_HOME/.config/nitrogen/bootstrap_init_flag
+  fi
+
+  msg "${CYAN}Install tmux plugin manager...${NOF}"
+  if [! -d "$USER_HOME/.tmux" ]
+  then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm &>/dev/null
+  else
+    msg "${GREEN}Found tmux plugin manager...${NOF}"
   fi
 }
 

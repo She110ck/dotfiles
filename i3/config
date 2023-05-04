@@ -326,7 +326,8 @@ bar {
   #status_command i3status
   status_command i3blocks
   position top
-  font pango:monospace 10
+  #font pango:monospace 10
+  font pango:Hack 10
 
 ##START THEMING BAR
 #Theme name : ArcoLinux Var Ashes

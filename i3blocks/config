@@ -1,10 +1,11 @@
 
 [DISK]
-command=df -h / | awk '/\//{ printf(" 💾 %4s/%s \n", $4, $2) }'
+command=df -h / | awk '/\//{ printf("  %4s/%s \n", $4, $2) }'
 interval=2
 color=#C9E3DB
 
 [BATTERY]
+label=
 command=~/.config/i3blocks/battery/battery_info.sh
 interval=3
 
@@ -15,7 +16,7 @@ interval=repeat
 color=#00B4EB
 
 [MEM]
-command=free -h | awk '/Mem:/ { printf(" 🐏 %5s/%s \n", $3, $2) }'
+command=free -h | awk '/Mem:/ { printf("  %5s/%s \n", $3, $2) }'
 interval=1
 color=#FEC925
 

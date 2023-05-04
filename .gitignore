@@ -4,3 +4,4 @@ mpd/playlists/*
 mpd/socket
 ncmpcpp/error.log
 tmux/*.log
+tmux/plugins/
