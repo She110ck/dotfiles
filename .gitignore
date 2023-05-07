@@ -5,3 +5,4 @@ mpd/socket
 ncmpcpp/error.log
 tmux/*.log
 tmux/plugins/
+touchegg/.touchegg:0.lock

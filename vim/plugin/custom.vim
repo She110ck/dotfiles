@@ -9,7 +9,6 @@ set smartindent
 set hlsearch
 set incsearch
 set nu
-set paste
 set expandtab
 " mouse interaction handles differently
 if empty($TMUX)
@@ -66,8 +65,9 @@ endfunc
 let mapleader=','
 let g:mapleader=','
 nnoremap <F3> :noh <CR>
-nnoremap <F4> :set invnumber <CR>
+nnoremap <F4> :set invnumber <CR>:set invpaste paste? <CR>
 nnoremap <F5> :execute "colo " .. NextColors()<CR>
+":highlight Normal ctermbg=none<CR>
 
 if &diff
     map <leader>1 :diffget LOCAL<CR>
@@ -91,4 +91,6 @@ endif
 if hostname() =~ "prod"
   colorscheme murphy
 endif
+
+imap ,so System.out.println();<left><left>
 

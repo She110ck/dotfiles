@@ -253,6 +253,7 @@ config_files() {
   config_init ".config/i3blocks"       "i3blocks"
   config_init ".config/ranger"         "ranger"
   config_init ".config/rofi"           "rofi"
+  config_init ".config/touchegg"       "touchegg"
   config_init ".config/xfce4/terminal" "xfce4/terminal"
   config_init ".config/zsh"            "zsh"
   config_init ".config/fish"           "fish"
