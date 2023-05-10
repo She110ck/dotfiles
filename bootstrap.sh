@@ -132,7 +132,7 @@ install_arch() {
   msg "${RED}Installing${NOF} arch packages. tail -f ${LOGFILE_DIR} to see"
 
   # alacritty tmux
-  yes | pacman -Syu --need --noconfirm git vim python-pip ranger base-devel \
+  yes | pacman -Syu --need --noconfirm git vim jq python-pip ranger base-devel \
     firefox chromium xfce4-terminal volumeicon \
     nitrogen flameshot peek viewnior mpd ncmpcpp mpv thunar \
     syncthing keepassxc alacritty \

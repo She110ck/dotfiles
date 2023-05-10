@@ -9,6 +9,10 @@ I disabled keyboard cycling. Right now experimenting with layout per binding. `u
 `dotfiles` will have `backup` directory in case if you already have some configs for things below. Just will move with timestap, don't worry. 
 
 
+Often I had a issue with nested window containers on i3wm. For example when you focusing on parent window with `Mod+a` and trying to split, but it just becomes messy. Found solution [there](https://publish.reddit.com/embed?url=https://www.reddit.com/r/i3wm/comments/enl5to/comment/feems8p/)
+
+> A node that has either a vertical or horizontal preselected split, if you attempt to move it left or right, it clears the split instead of moving it. 
+
 ### Using Git and the bootstrap script
 
 Repo contains submodules for `zsh`. If you need them, clone with  `--recursive-submodules` flag.  
