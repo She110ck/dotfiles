@@ -133,7 +133,7 @@ install_arch() {
 
   # alacritty tmux
   yes | pacman -Syu --need --noconfirm git vim jq python-pip ranger base-devel \
-    firefox chromium xfce4-terminal volumeicon \
+    firefox chromium xfce4-terminal volumeicon gxkb \
     nitrogen flameshot peek viewnior mpd ncmpcpp mpv thunar \
     syncthing keepassxc alacritty \
     blueman-manager bluez pulseaudio-bluetooth \
@@ -262,6 +262,7 @@ config_files() {
   config_init ".config/ncmpcpp"        "ncmpcpp"
   config_init ".config/picom"          "picom"
   config_init "Pictures/nitrogen"      "nitrogen"
+  config_init ".local/share/gxkb"      "gxkb"
 
   # install oh-my-zsh framework
   if [ ! -d $USER_HOME/.oh-my-zsh ] ; 
@@ -277,7 +278,7 @@ config_files() {
   fi
 
   msg "${CYAN}Install tmux plugin manager...${NOF}"
-  if [! -d "$USER_HOME/.tmux" ]
+  if [ ! -d "$USER_HOME/.tmux" ]
   then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm &>/dev/null
   else

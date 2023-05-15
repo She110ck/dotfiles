@@ -5,8 +5,7 @@ My dotfiles with init script.
 **Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!  
 
 ## Good to know
-I disabled keyboard cycling. Right now experimenting with layout per binding. `us` layout is `Ctrl+)`.  
-`dotfiles` will have `backup` directory in case if you already have some configs for things below. Just will move with timestap, don't worry. 
+`dotfiles` will have `backup` directory in case if you already have some configs for things below. Just will move with timestap, don't worry.
 
 
 Often I had a issue with nested window containers on i3wm. For example when you focusing on parent window with `Mod+a` and trying to split, but it just becomes messy. Found solution [there](https://publish.reddit.com/embed?url=https://www.reddit.com/r/i3wm/comments/enl5to/comment/feems8p/)

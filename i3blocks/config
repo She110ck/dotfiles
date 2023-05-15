@@ -20,11 +20,11 @@ command=free -h | awk '/Mem:/ { printf("  %5s/%s \n", $3, $2) }'
 interval=1
 color=#FEC925
 
-[language]
-label=⌨️
-command=setxkbmap -query | grep layout | colrm 1 12
-interval=1
-signal=7
+#[language]
+#label=⌨️
+#command=setxkbmap -query | grep layout | colrm 1 12
+#interval=1
+#signal=7
 
 [TIME_DATE]
 command=date +" %a, %d %b - %H:%M:%S"
