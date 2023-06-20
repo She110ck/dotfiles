@@ -55,4 +55,6 @@ then
 fi
 
 printf "${GREEN}Configuration successful!...${NOF}\n"
-
+printf "${YELLOW}-----------------------------${NOF}\n"
+printf "${YELLOW}* Please check if tmux requires to be linked .tmux conf${NOF}\n"
+printf "${YELLOW}* On tmux session type C-a-I (capital i) to install plugins ${NOF}\n"
