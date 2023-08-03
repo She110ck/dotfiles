@@ -67,6 +67,7 @@ let g:mapleader=','
 nnoremap <F3> :noh <CR>
 nnoremap <F4> :set invnumber <CR>:set invpaste paste? <CR>
 nnoremap <F5> :execute "colo " .. NextColors()<CR>
+nnoremap <F6> :%s/\s\+$//e <CR>
 ":highlight Normal ctermbg=none<CR>
 
 if &diff

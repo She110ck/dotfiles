@@ -160,5 +160,12 @@ I prefer to see ~~how much~~ jobs on background. So I customized promt a bit on 
 
 **A:** Check this out: [https://www.nerdfonts.com/cheat-sheet](https://www.nerdfonts.com/cheat-sheet)
 
+**Q: How to sync time on linux?**
 
+**A:** First you need to update your OS time via ntp. Second, you need sync hardware clock with it. 
+```
+sudo timedatectl set-ntp true
+sudo hwclock --systohc 
+
+```
 

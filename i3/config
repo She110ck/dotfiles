@@ -153,8 +153,8 @@ exec --no-startup-id flameshot
 exec --no-startup-id mpd
 exec --no-startup-id redshift -l 40.40:49.95
 # Caps Lock as Ctrl
-exec_always --no-startup-id setxkbmap -option ctrl:nocaps
-exec_always --no-startup-id setxkbmap -layout us,ru,az -variant ,, -option grp:win_space_toggle
+exec --no-startup-id setxkbmap -option ctrl:nocaps
+exec_always --no-startup-id "sh -c 'setxkbmap -layout us,ru,az -variant ,, -option grp:win_space_toggle ctrl:nocaps'"
 exec --no-startup-id gxkb
 
 # ---------------------------------------------------------------
