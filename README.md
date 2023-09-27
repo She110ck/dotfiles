@@ -62,8 +62,8 @@ Host server-ssh
         IdentityFile ~/.ssh/some_cert
         User user
         RequestTTY yes
-        # RemoteCommand tmux attach -t s1
-        RemoteCommand tmux new -A -s s1 -n s1
+        # RemoteCommand tmux attach -t s1 
+        RemoteCommand tmux new -A -s s1 -n s1 \; detach client -a
         LocalForward 8000 localhost:8000
 
 # mosh

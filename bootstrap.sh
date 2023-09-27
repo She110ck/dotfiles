@@ -134,7 +134,7 @@ install_arch() {
   # alacritty tmux
   yes | pacman -Syu --need --noconfirm git vim jq python-pip ranger base-devel \
     firefox chromium xfce4-terminal volumeicon gxkb \
-    nitrogen flameshot peek viewnior mpd ncmpcpp mpv thunar \
+    nitrogen flameshot peek viewnior mpd ncmpcpp mpv thunar intel-media-driver \
     syncthing keepassxc alacritty \
     blueman-manager bluez pulseaudio-bluetooth \
     tlp xss-lock lxsession xautolock sysstat \

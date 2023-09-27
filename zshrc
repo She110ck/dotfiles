@@ -88,6 +88,8 @@ setopt HIST_IGNORE_SPACE
 export PROMPT="%{${turquoise}%(1j.● .)${reset_color}%}$PROMPT"
 
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export LIBVA_DRIVER_NAME=iHD
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
