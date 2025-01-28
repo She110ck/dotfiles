@@ -1,0 +1,19 @@
+[colors.normal]
+blue = "#5555FF"
+cyan = "#55FFFF"
+green = "#55FF55"
+magenta = "#FF55FF"
+
+[colors.primary]
+background = "#000000"
+foreground = "#f2f2f2"
+
+[font]
+size = 10
+
+[font.normal]
+family = "FiraCode Nerd Font"
+
+[window]
+decorations = "full"
+opacity = 0.8

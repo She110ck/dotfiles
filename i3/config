@@ -50,10 +50,13 @@ set $base0C #95AEC7
 set $base0D #AE95C7
 set $base0E #C795AE
 set $base0F #C79595
+set $base0G #450EFF
+set $base0H #2A2356
+set $base0J #3F3381
 
 # Window color settings
 # class                 border  backgr. text    indicator
-client.focused          $base05 $base0D $base00 $base0
+client.focused          $base05 $base07 $base00 $base0F $base0J
 client.unfocused        $base01 $base00 $base05 $base01
 client.focused_inactive $base01 $base01 $base05 $base03
 client.placeholder      $base00 $base00 $base05 $base00
@@ -155,8 +158,10 @@ exec --no-startup-id mpd
 exec --no-startup-id redshift -l 40.40:49.95
 # Caps Lock as Ctrl
 exec --no-startup-id setxkbmap -option ctrl:nocaps
-exec_always --no-startup-id "setxkbmap -layout us,ru -variant ,, -option grp:win_space_toggle ctrl:nocaps"
+exec --no-startup-id "setxkbmap -layout us,ru -variant ,, -option grp:win_space_toggle ctrl:nocaps"
 exec --no-startup-id gxkb
+# Запуск autorandr при старте i3
+exec_always --no-startup-id autorandr --change
 
 # ---------------------------------------------------------------
 # ---------------  Application keyboard shortcuts  --------------
@@ -176,6 +181,7 @@ bindsym F12 exec xfce4-terminal --drop-down
 bindsym $mod+f exec firefox
 bindsym shift+Print exec peek
 bindsym Print exec flameshot gui
+bindsym $mod+m exec autorandr --change
 
 # maybe I should set some toggle option
 #bindsym $mark+parenright exec setxkbmap -layout us
